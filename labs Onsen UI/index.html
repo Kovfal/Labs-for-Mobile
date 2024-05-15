@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"> 
+   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</head>
+<body>
+    <ons-splitter> 
+        <ons-splitter-side id="menu" collapse width="220px"> 
+            <ons-page>
+                <ons-list> 
+                    <ons-list-item onclick="loadPage('about_program.html')"> О программе</ons-list-item>
+                </ons-list>
+                <ons-list> 
+                    <ons-list-item onclick="loadPage('about_author.html')"> Об авторе</ons-list-item>
+                </ons-list>                         
+            </ons-page> 
+        </ons-splitter-side>
+        <ons-splitter-content> 
+            <ons-navigator id="navigator" page="login.html"></ons-navigator>
+        </ons-splitter-content> 
+    </ons-splitter>
+    <template id="login.html"> 
+        <ons-page id="login">
+            <div style="text-align: center; margin-top: 60%">
+                Hello, World!
+            </div>
+            <ons-input style="margin-left: 30%; margin-top: 5%;" type="text" id="username" placeholder="Логин" modifier="underbar"></ons-input>
+            <ons-input style="margin-left: 30%;" type="password" id="password" placeholder="Пароль" modifier="underbar"></ons-input>
+            <ons-button style="margin-left: 42%; margin-top: 5%; background-color: rgb(200, 200, 200); color: rgb(0, 0, 0);" onclick="login()">Войти</ons-button>
+            
+            <script>
+                function login()
+                {
+                    var username = document.querySelector('#username').value;
+                    var password = document.querySelector('#password').value;
+                    if (username == 'user' && password == '1'){
+                        var navigator = document.querySelector('#navigator'); 
+                        navigator.resetToPage('home.html');
+                    }else{
+                        ons.notification.alert("Ошибка входа. Неверный логин или пароль.");
+                    }
+                };
+                function openMenu ()  
+                { 
+                    document.querySelector('#menu').open(); 
+                };
+                function loadPage(page)  
+                { 
+                    document.querySelector('#menu').close();
+                    document.querySelector('#navigator').bringPageTop(page, { animation: 'fade' }); 
+                };
+                function moveItem(event) { 
+                    var item = event.currentTarget.closest('ons-list-item'); 
+                    var listId = item.parentElement.id; 
+                    var targetListId = (listId === 'hall-list') ? 'bedroom-list' : 'hall-list'; 
+                    var targetList = document.getElementById(targetListId); 
+                    targetList.appendChild(item); 
+                }
+            </script>
+        </ons-page>
+    </template>
+    <template id="home.html"> 
+        <ons-page id="home"> 
+            <ons-toolbar id="home-toolbar">
+                <div class="left"> 
+                    <ons-toolbar-button onclick="openMenu()"> 
+                    <ons-icon icon="md-menu"></ons-icon> </ons-toolbar-button> 
+                </div>                     
+                <div class="center">
+                   Домашняя страница
+                </div> 
+            </ons-toolbar> 
+            <ons-tabbar id="tabbar"> 
+                <ons-tab page="hall.html" label="Зал"></ons-tab> 
+                <ons-tab page="bedroom.html" label="Спальня"></ons-tab> 
+            </ons-tabbar>                             
+        </ons-page> 
+    </template>
+    <template id="about_program.html"> 
+        <ons-page id="about_program"> 
+            <ons-toolbar id="about_program-toolbar">
+                <div class="left"> 
+                    <ons-back-button></ons-back-button> 
+                </div>                                 
+                <div class="center">
+                    О программе
+                </div> 
+            </ons-toolbar>              
+        </ons-page> 
+    </template>
+    <template id="about_author.html"> 
+        <ons-page id="about_author"> 
+            <ons-toolbar id="about_author-toolbar">
+                <div class="left"> 
+                    <ons-back-button></ons-back-button> 
+                </div>                                
+                <div class="center">
+                    Об авторе
+                </div> 
+            </ons-toolbar>              
+        </ons-page> 
+    </template>
+    <template id="hall.html"> 
+        <ons-page id="hall">                     
+            Зал
+            <ons-list id="hall-list">
+                <ons-list-item expandable> 
+                    Диван
+                    <div class="expandable-content"> 
+                        <img style="width: 20%; height: 30%;" src="https://mebel-bin.ru/uploads/thumbs/store/product/1920x1449_0057c910dc786c5b2a162a553c00ac49.png"></img> 
+                        <br/>Большой диван «Флоренция»<br/>
+                        <ons-button onclick="moveItem(event)" style="background-color: rgb(200, 200, 200); color: rgb(0, 0, 0); margin-left: 90%;"><-></ons-button>
+                    </div> 
+                </ons-list-item>
+                <ons-list-item expandable> 
+                    Кресло
+                    <div class="expandable-content">
+                        <img style="width: 20%; height: 20%;" src="https://bestmebel-kam.ru/wp-content/uploads/2021/03/2-14.png"></img> 
+                        <br/>Раскладное кресло типа «Дельфин»<br/>
+                        <ons-button onclick="moveItem(event)" style="background-color: rgb(200, 200, 200); color: rgb(0, 0, 0); margin-left: 90%;"><-></ons-button>
+                    </div> 
+                </ons-list-item>
+                <ons-list-item expandable> 
+                    Телевизор
+                    <div class="expandable-content">
+                        <img style="width: 20%; height: 30%;" src="https://www.lg.com/ru/images/televisions/md07528359/gallery/TV-OLED-65-A1-A-Gallery-D01.jpg"></img>
+                        <br/>Широкоформатный телевизор марки «LG» с OLED дисплеем<br/>
+                        <ons-button onclick="moveItem(event)" style="background-color: rgb(200, 200, 200); color: rgb(0, 0, 0); margin-left: 90%;"><-></ons-button>
+                    </div> 
+                </ons-list-item>
+            </ons-list>  
+        </ons-page> 
+    </template>
+    <template id="bedroom.html"> 
+        <ons-page id="bedroom"> 
+            Спальня
+            <ons-list id="bedroom-list">
+                <ons-list-item expandable> 
+                    Кровать
+                    <div class="expandable-content">
+                        <img style="width: 20%; height: 30%;" src="https://w7.pngwing.com/pngs/13/445/png-transparent-platform-bed-bedroom-furniture-sets-daybed-bed-angle-mattress-furniture.png"></img> 
+                        <br/>Двуспальная «Кровать-кушетка»<br/>
+                        <ons-button onclick="moveItem(event)" style="background-color: rgb(200, 200, 200); color: rgb(0, 0, 0); margin-left: 90%;"><-></ons-button>
+                    </div> 
+                </ons-list-item>
+                <ons-list-item expandable> 
+                    Шкаф
+                    <div class="expandable-content">
+                        <img style="width: 20%; height: 30%;" src="https://w7.pngwing.com/pngs/733/659/png-transparent-closet-shelf-house-armoires-wardrobes-apartment-closet-furniture-room-author.png"></img> 
+                        <br/>Вместительный «Шкаф-купе»<br/>
+                        <ons-button onclick="moveItem(event)" style="background-color: rgb(200, 200, 200); color: rgb(0, 0, 0); margin-left: 90%;"><-></ons-button>
+                    </div> 
+                </ons-list-item>
+                <ons-list-item expandable> 
+                    Табуретка
+                    <div class="expandable-content">
+                        <img style="width: 20%; height: 30%;" src="https://esandwich.ru/upload/resize_cache/iblock/400_400_0bd8046e86ed6dc81a753aafc271c1aeb/1620792761_p84410_20439231_banketka_parker_derevo_cvet_beliyvrbrg_kl.png"></img> 
+                        <br/>Деревянный табурет «Банкетка» с широким и мягким сиденьем<br/>
+                        <ons-button onclick="moveItem(event)" style="background-color: rgb(200, 200, 200); color: rgb(0, 0, 0); margin-left: 90%;"><-></ons-button>
+                    </div> 
+                </ons-list-item>
+            </ons-list>          
+        </ons-page> 
+    </template>       
+</body>
+</html>
