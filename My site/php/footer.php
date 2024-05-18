@@ -26,10 +26,6 @@ echo '
 						<a title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
 					</div>
 				</div>
-
-
-
-
 			</div>
 		</footer>
 	</body>
