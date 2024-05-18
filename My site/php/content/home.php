@@ -5,7 +5,7 @@ $n=5;
 $page_max=ceil($article_max/$n);
 
 
-echo '			<div class="container">'
+echo '			<div class="container">';
 
 
 for($i=1+$page; $i<=$n+$page; $i++)
