@@ -8,8 +8,7 @@ $page_max=ceil($article_max/$n);
 echo '			<div class="container">';
 
 
-for($i=1+$page; $i<=$n+$page; $i++)
-{
+for($i=1+$page; $i<=$n+$page; $i++){
 	echo '
 					<section>
 						<article>
