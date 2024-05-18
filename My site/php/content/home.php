@@ -28,6 +28,6 @@ for($i=1+$page; $i<=$n+$page; $i++)
 					</section>
 	';
 	if($i==$article_max) break;
-}
+};
 for($i=1; $i<=$page_max; $i++)
 	echo '<a href=index.php?s=1&page='.($i-1).'>'.$i.'</a> ';
