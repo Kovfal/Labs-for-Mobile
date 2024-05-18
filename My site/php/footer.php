@@ -1,6 +1,6 @@
 <?php
 
-echo '  </main>'
+echo '  </main>';
 
 echo '
         <footer>
